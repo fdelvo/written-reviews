@@ -18,9 +18,9 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Contentful starter',
+    title: 'Written Reviews',
   },
-  pathPrefix: '/gatsby-contentful-starter',
+  pathPrefix: '/written-reviews',
   plugins: [
     'gatsby-transformer-remark',
     'gatsby-transformer-sharp',

@@ -1,11 +1,10 @@
 {
-  "name": "Contentful Gatsby Starter",
-  "description": "Gatsby starter for a Contentful project.",
+  "name": "Written Reviews",
+  "description": "A personal blog called 'Written Reviews'",
   "keywords": [
-    "contentful",
-    "gatsby",
-    "static",
-    "ssg"
+    "wirtten",
+    "reviews",
+    "blog"
   ],
   "repository": "https://github.com/contentful-userland/gatsby-contentful-starter",
   "success_url": "/",

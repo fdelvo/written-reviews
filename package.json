@@ -1,11 +1,8 @@
 {
-  "name": "gatsby-contentful-starter",
-  "description": "Starter Contentful Gatsby Blog",
+  "name": "written-reviews",
+  "description": "Personal blog called 'Written Reviews'",
   "version": "1.0.0",
-  "author": "Stefan Judis <stefanjudis@gmail.com>",
-  "bugs": {
-    "url": "https://github.com/contentful-userland/gatsby-contentful-starter/issues"
-  },
+  "author": "Florian Delvo <florian.delvo@written-reviews.com>",
   "dependencies": {
     "gatsby-image": "^2.0.38",
     "gatsby-plugin-react-helmet": "^3.0.12",
@@ -21,22 +18,19 @@
   },
   "devDependencies": {
     "babel-eslint": "^10.0.1",
-    "chalk": "^2.4.2",
-    "contentful-import": "^7.4.3",
     "dotenv": "^8.0.0",
     "eslint": "^5.16.0",
     "eslint-plugin-react": "^7.12.4",
     "gatsby": "^2.3.22",
     "gh-pages": "^2.0.1",
-    "inquirer": "^6.2.2",
     "prettier": "^1.17.0",
-    "rimraf": "^2.6.3",
     "yargs-parser": "^13.0.0"
   },
-  "homepage": "https://github.com/contentful-userland/gatsby-contentful-starter#readme",
+  "homepage": "https://www.written-reviews.com",
   "keywords": [
-    "gatsby",
-    "contentful"
+    "written",
+    "reviews",
+    "blog"
   ],
   "license": "MIT",
   "main": "n/a",
