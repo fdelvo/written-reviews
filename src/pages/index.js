@@ -2,7 +2,7 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import get from 'lodash/get'
 import Helmet from 'react-helmet'
-import Hero from '../components/hero'
+import FeaturePost from '../components/featurePost'
 import Layout from '../components/layout'
 import ArticlePreview from '../components/article-preview'
 
@@ -11,14 +11,15 @@ class RootIndex extends React.Component {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
     const [author] = get(this, 'props.data.allContentfulPerson.edges')
+    const featurePost = get(this, 'props.data.allContentfulBlogPost.edges[0]')
 
     return (
       <Layout location={this.props.location} >
         <div style={{ background: '#fff' }}>
           <Helmet title={siteTitle} />
-          <Hero data={author.node} />
+          <FeaturePost data={featurePost.node} />
           <div className="wrapper">
-            <h2 className="section-headline">Recent articles</h2>
+            <h2 className="section-headline">Posts</h2>
             <ul className="article-list">
               {posts.map(({ node }) => {
                 return (
@@ -44,15 +45,23 @@ export const pageQuery = graphql`
         title
       }
     }
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }, limit: 10) {
       edges {
         node {
           title
           slug
+          author {
+            name
+          }
           publishDate(formatString: "MMMM Do, YYYY")
           tags
-          heroImage {
+          thumbnail: heroImage {
             fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
+             ...GatsbyContentfulFluid_tracedSVG
+            }
+          }
+          coverImage: heroImage {
+            fluid(maxWidth: 1180, resizingBehavior: SCALE) {
              ...GatsbyContentfulFluid_tracedSVG
             }
           }
