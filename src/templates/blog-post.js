@@ -24,9 +24,11 @@ class BlogPostTemplate extends React.Component {
             <p
               style={{
                 display: 'block',
+                fontStyle: 'italic',
+                marginBottom: '3em'
               }}
             >
-              {post.publishDate}
+              By {post.author.name} on {post.publishDate}
             </p>
             <div
               dangerouslySetInnerHTML={{
@@ -56,6 +58,9 @@ export const pageQuery = graphql`
         fluid(maxWidth: 1180, background: "rgb:000000") {
           ...GatsbyContentfulFluid_tracedSVG
         }
+      }
+      author {
+        name
       }
       body {
         childMarkdownRemark {
