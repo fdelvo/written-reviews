@@ -3,10 +3,11 @@ import { Link } from 'gatsby'
 import base from './base.css'
 import Container from './container'
 import Navigation from './navigation'
+import SEO from './seo'
 
 class Template extends React.Component {
   render() {
-    const { location, children } = this.props
+    const { children } = this.props
     let header
 
     let rootPath = `/`
@@ -16,6 +17,7 @@ class Template extends React.Component {
 
     return (
       <Container>
+        <SEO />
         <Navigation />
         {children}
       </Container>

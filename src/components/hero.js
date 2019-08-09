@@ -9,7 +9,11 @@ export default ({ data }) => (
     <div className={styles.heroDetails}>
       <h3 className={styles.heroHeadline}>{data.name}</h3>
       <p className={styles.heroTitle}>{data.title}</p>
-      <p>{data.shortBio.shortBio}</p>
+      <ul>
+        <li>Twitter: <a href={`https://www.twitter.com/${data.twitter}`}>{data.twitter}</a></li>
+        <li>Email: {data.email}</li>
+      </ul>
+      <p className={styles.heroShortBio}>{data.shortBio.shortBio}</p>
     </div>
   </div>
 )

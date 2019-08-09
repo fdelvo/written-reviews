@@ -6,12 +6,10 @@ import Layout from '../components/layout'
 
 class AboutIndex extends React.Component {
   render() {
-    const siteTitle = get(this, 'props.data.site.siteMetadata.title')
 
     return (
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>
-          <Helmet title={`About | ${siteTitle}`} />
           <div className="wrapper">
             <h2 className="section-headline">About Written Reviews</h2>
             <p>
@@ -42,40 +40,3 @@ class AboutIndex extends React.Component {
 
 export default AboutIndex
 
-export const pageQuery = graphql`
-  query AboutQuery {
-    site {
-      siteMetadata {
-        title
-      }
-    }
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }, limit: 10) {
-      edges {
-        node {
-          title
-          slug
-          author {
-            name
-          }
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
-          thumbnail: heroImage {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
-             ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-          coverImage: heroImage {
-            fluid(maxWidth: 1180, resizingBehavior: SCALE) {
-             ...GatsbyContentfulFluid_tracedSVG
-            }
-          }
-          description {
-            childMarkdownRemark {
-              html
-            }
-          }
-        }
-      }
-    }
-  }
-`

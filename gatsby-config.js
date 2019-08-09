@@ -1,11 +1,11 @@
 require('dotenv').config({
-  path: `.env.${process.env.NODE_ENV}`
+  path: `.env.${process.env.NODE_ENV}`,
 })
 
 const contentfulConfig = {
   spaceId: process.env.CONTENTFUL_SPACE_ID,
   accessToken: process.env.CONTENTFUL_ACCESS_TOKEN,
-  host: process.env.CONTENTFUL_HOST
+  host: process.env.CONTENTFUL_HOST,
 }
 
 const { spaceId, accessToken } = contentfulConfig
@@ -18,7 +18,13 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
-    title: 'Written Reviews',
+    title: "Written Reviews",
+    titleTemplate: "Written Reviews",
+    description:
+      "Personal review blog.",
+    url: "https://www.written-reviews.com", // No trailing slash allowed!
+    image: "/ng_twitter_meta.png", // Path to your image you placed in the 'static' folder
+    twitterUsername: "@writtenreviews",
   },
   pathPrefix: '/written-reviews',
   plugins: [
@@ -29,6 +35,13 @@ module.exports = {
     {
       resolve: 'gatsby-source-contentful',
       options: contentfulConfig,
-    }
+    },
+    {
+      resolve: `gatsby-plugin-google-analytics`,
+      options: {
+        // replace "UA-XXXXXXXXX-X" with your own Tracking ID
+        trackingId: 'UA-XXXXXXXXX-X',
+      },
+    },
   ],
 }
