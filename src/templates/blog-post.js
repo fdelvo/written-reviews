@@ -1,14 +1,16 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import get from 'lodash/get'
 import Img from 'gatsby-image'
 import Layout from '../components/layout'
+import styles from '../components/article-preview.module.css'
 
 import heroStyles from '../components/hero.module.css'
 
 class BlogPostTemplate extends React.Component {
   render() {
     const post = get(this.props, 'data.contentfulBlogPost')
+    const { location } = this.props
 
     return (
       <Layout location={this.props.location}>
@@ -34,7 +36,7 @@ class BlogPostTemplate extends React.Component {
               <span>Share: </span>
               <a
                 class="resp-sharing-button__link"
-                href={`https://twitter.com/intent/tweet/?text=share`}
+                href={`https://twitter.com/intent/tweet/?text=${post.description.description}%20${location.href}`}
                 target="_blank"
                 rel="noopener"
                 aria-label="Twitter"
@@ -67,6 +69,11 @@ class BlogPostTemplate extends React.Component {
                 __html: post.body.childMarkdownRemark.html,
               }}
             />
+            {post.tags.map(tag => (
+              <p className={styles.tag} key={tag}>
+                <Link to={`/tags/${tag}`}>{tag}</Link>
+              </p>
+            ))}
           </div>
         </div>
       </Layout>
@@ -81,7 +88,11 @@ export const pageQuery = graphql`
     contentfulBlogPost(slug: { eq: $slug }) {
       title
       slug
+      tags
       publishDate(formatString: "MMMM Do, YYYY")
+      description {
+        description
+      }
       heroImage {
         fluid(maxWidth: 1180, background: "rgb:000000") {
           ...GatsbyContentfulFluid_tracedSVG

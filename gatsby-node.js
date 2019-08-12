@@ -8,6 +8,7 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
     const tagComponent = path.resolve('./src/templates/tag.js')
+    const authorComponent = path.resolve('./src/templates/author.js')
     resolve(
       graphql(
         `
@@ -18,6 +19,9 @@ exports.createPages = ({ graphql, actions }) => {
                   title
                   slug
                   tags
+                  author {
+                    name
+                  }
                 }
               }
             }
@@ -56,6 +60,26 @@ exports.createPages = ({ graphql, actions }) => {
             component: tagComponent,
             context: {
               tag,
+            },
+          })
+        })
+
+        let authors = []
+        // Iterate through each post, putting all found tags into `tags`
+        _.each(posts, edge => {
+          if (_.get(edge, 'node.author.name')) {
+            authors = authors.concat(edge.node.author.name)
+          }
+        })
+        // Eliminate duplicate tags
+        authors = _.uniq(authors)
+
+        authors.forEach(author => {
+          createPage({
+            path: `/authors/${author}/`,
+            component: authorComponent,
+            context: {
+              author,
             },
           })
         })

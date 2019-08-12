@@ -1,19 +1,28 @@
 import React from 'react'
 import Img from 'gatsby-image'
+import { Link } from "gatsby"
 
 import styles from './hero.module.css'
 
 export default ({ data }) => (
   <div className={styles.hero}>
-    <Img className={styles.heroImage} alt={data.name} fluid={data.image.fluid} />
+    <Img
+      className={styles.heroImage}
+      alt={data.name}
+      fluid={data.image.fluid}
+    />
     <div className={styles.heroDetails}>
-      <h3 className={styles.heroHeadline}>{data.name}</h3>
+      <h3 className={styles.heroHeadline}>
+        <Link to={`/authors/${data.name}`}>{data.name}</Link>
+      </h3>
       <p className={styles.heroTitle}>{data.title}</p>
       <ul>
-        <li>Twitter: <a href={`https://www.twitter.com/${data.twitter}`}>{data.twitter}</a></li>
-        <li>Email: {data.email}</li>
+        <li>
+          Twitter:{' '}
+          <a href={`https://www.twitter.com/${data.twitter}`}>{data.twitter}</a>
+        </li>
+        <li>Email: <a href={`mailto:${data.email}`}>{data.email}</a></li>
       </ul>
-      <p className={styles.heroShortBio}>{data.shortBio.shortBio}</p>
     </div>
   </div>
 )
