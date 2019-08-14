@@ -33,6 +33,7 @@ export const pageQuery = graphql`
         node {
           email
           name
+          slug
           title
           twitter
           shortBio {

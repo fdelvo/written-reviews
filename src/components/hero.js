@@ -13,7 +13,7 @@ export default ({ data }) => (
     />
     <div className={styles.heroDetails}>
       <h3 className={styles.heroHeadline}>
-        <Link to={`/authors/${data.name}`}>{data.name}</Link>
+        <Link to={`/authors/${data.slug}`}>{data.name}</Link>
       </h3>
       <p className={styles.heroTitle}>{data.title}</p>
       <ul>

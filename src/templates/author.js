@@ -1,18 +1,23 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Layout from '../components/layout'
 import get from 'lodash/get'
 import ArticlePreview from '../components/article-preview'
 import FeaturePost from '../components/featurePost'
+import Pagination from '../components/pagination'
 
 class AuthorTemplate extends React.Component {
   render() {
-    const { author } = get(this.props, 'pageContext')
+    const { authorName, authorSlug, currentPage, numPagesPostsAuthors } = get(this.props, 'pageContext')
     const { edges, totalCount } = get(this.props, 'data.allContentfulBlogPost')
     const authorHeader = `${totalCount} post${
       totalCount === 1 ? '' : 's'
-    } by ${author}`
+    } by ${authorName}`
     const featurePost = get(this, 'props.data.allContentfulBlogPost.edges[0]')
+    const isFirst = currentPage === 1
+    const isLast = currentPage === numPagesPostsAuthors
+    const prevPage = currentPage - 1 === 1 ? `/authors/${authorSlug}/` : `/authors/${authorSlug}/${(currentPage - 1).toString()}`
+    const nextPage = `/authors/${authorSlug}/${(currentPage + 1).toString()}`
 
     return (
       <Layout>
@@ -31,6 +36,14 @@ class AuthorTemplate extends React.Component {
                 })}
               </ul>
             )}
+            <Pagination
+              isFirst={isFirst}
+              isLast={isLast}
+              nextPage={nextPage}
+              prevPage={prevPage}
+              numPages={numPagesPostsAuthors}
+              to={`/authors/${authorSlug}/`}
+            />
           </div>
         </div>
       </Layout>
@@ -41,11 +54,12 @@ class AuthorTemplate extends React.Component {
 export default AuthorTemplate
 
 export const pageQuery = graphql`
-  query($author: String) {
+  query($authorSlug: String, $skip: Int!, $limit: Int!) {
     allContentfulBlogPost(
-      limit: 2000
+      limit: $limit
+      skip: $skip
       sort: { fields: [publishDate], order: DESC }
-      filter: { author: { name: { in: [$author] } } }
+      filter: { author: { slug: { in: [$authorSlug] } } }
     ) {
       totalCount
       edges {

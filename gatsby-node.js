@@ -1,6 +1,6 @@
 const Promise = require('bluebird')
 const path = require('path')
-const _ = require("lodash")
+const _ = require('lodash')
 
 exports.createPages = ({ graphql, actions }) => {
   const { createPage } = actions
@@ -9,6 +9,7 @@ exports.createPages = ({ graphql, actions }) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
     const tagComponent = path.resolve('./src/templates/tag.js')
     const authorComponent = path.resolve('./src/templates/author.js')
+    const indexComponent = path.resolve('./src/templates/index.js')
     resolve(
       graphql(
         `
@@ -21,6 +22,7 @@ exports.createPages = ({ graphql, actions }) => {
                   tags
                   author {
                     name
+                    slug
                   }
                 }
               }
@@ -32,9 +34,25 @@ exports.createPages = ({ graphql, actions }) => {
           console.log(result.errors)
           reject(result.errors)
         }
- 
+
         const posts = result.data.allContentfulBlogPost.edges
-        posts.forEach((post, index) => {
+        const postsPerPage = 2
+        const numPagesPosts = Math.ceil(posts.length / postsPerPage)
+
+        Array.from({ length: numPagesPosts }).forEach((_, i) => {
+          createPage({
+            path: i === 0 ? `/` : `/${i + 1}`,
+            component: indexComponent,
+            context: {
+              limit: postsPerPage,
+              skip: i * postsPerPage,
+              numPagesPosts,
+              currentPage: i + 1,
+            },
+          })
+        })
+
+        posts.forEach(post => {
           createPage({
             path: `/blog/${post.node.slug}/`,
             component: blogPost,
@@ -55,32 +73,53 @@ exports.createPages = ({ graphql, actions }) => {
         tags = _.uniq(tags)
 
         tags.forEach(tag => {
-          createPage({
-            path: `/tags/${tag}/`,
-            component: tagComponent,
-            context: {
-              tag,
-            },
+          const tagPosts = posts.filter(
+            post => post.node.tags.indexOf(tag) !== -1
+          )
+          const numPagesPostsTags = Math.ceil(tagPosts.length / postsPerPage)
+          Array.from({ length: numPagesPostsTags }).forEach((_, i) => {
+            createPage({
+              path: i === 0 ? `/tags/${tag}/` : `/tags/${tag}/${i + 1}`,
+              component: tagComponent,
+              context: {
+                limit: postsPerPage,
+                skip: i * postsPerPage,
+                numPagesPostsTags,
+                currentPage: i + 1,
+                tag,
+              },
+            })
           })
         })
 
         let authors = []
-        // Iterate through each post, putting all found tags into `tags`
         _.each(posts, edge => {
-          if (_.get(edge, 'node.author.name')) {
-            authors = authors.concat(edge.node.author.name)
+          if (_.get(edge, 'node.author.slug')) {
+            authors.push({'slug': edge.node.author.slug, 'name': edge.node.author.name})
           }
         })
-        // Eliminate duplicate tags
         authors = _.uniq(authors)
-
         authors.forEach(author => {
-          createPage({
-            path: `/authors/${author}/`,
-            component: authorComponent,
-            context: {
-              author,
-            },
+          const authorPosts = posts.filter(
+            post => post.node.author.slug === author.slug
+          )
+          const numPagesPostsAuthors = Math.ceil(
+            authorPosts.length / postsPerPage
+          )
+          Array.from({ length: numPagesPostsAuthors }).forEach((_, i) => {
+            createPage({
+              path:
+                i === 0 ? `/authors/${author.slug}/` : `/authors/${author.slug}/${i + 1}`,
+              component: authorComponent,
+              context: {
+                limit: postsPerPage,
+                skip: i * postsPerPage,
+                numPagesPostsAuthors,
+                currentPage: i + 1,
+                authorName: author.name,
+                authorSlug: author.slug,
+              },
+            })
           })
         })
       })

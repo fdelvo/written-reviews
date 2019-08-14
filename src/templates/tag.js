@@ -1,18 +1,29 @@
 import React from 'react'
-import { graphql } from 'gatsby'
+import { graphql, Link } from 'gatsby'
 import Layout from '../components/layout'
 import get from 'lodash/get'
 import ArticlePreview from '../components/article-preview'
 import FeaturePost from '../components/featurePost'
+import Pagination from '../components/pagination'
 
 class TagTemplate extends React.Component {
   render() {
-    const { tag } = get(this.props, 'pageContext')
+    const { tag, currentPage, numPagesPostsTags } = get(
+      this.props,
+      'pageContext'
+    )
     const { edges, totalCount } = get(this.props, 'data.allContentfulBlogPost')
     const tagHeader = `${totalCount} post${
       totalCount === 1 ? '' : 's'
     } tagged with "${tag}"`
     const featurePost = get(this, 'props.data.allContentfulBlogPost.edges[0]')
+    const isFirst = currentPage === 1
+    const isLast = currentPage === numPagesPostsTags
+    const prevPage =
+      currentPage - 1 === 1
+        ? `/tags/${tag}/`
+        : `/tags/${tag}/${(currentPage - 1).toString()}`
+    const nextPage = `/tags/${tag}/${(currentPage + 1).toString()}`
 
     return (
       <Layout>
@@ -31,6 +42,14 @@ class TagTemplate extends React.Component {
                 })}
               </ul>
             )}
+            <Pagination
+              isFirst={isFirst}
+              isLast={isLast}
+              nextPage={nextPage}
+              prevPage={prevPage}
+              numPages={numPagesPostsTags}
+              to={`/tags/${tag}/`}
+            />
           </div>
         </div>
       </Layout>
@@ -41,9 +60,10 @@ class TagTemplate extends React.Component {
 export default TagTemplate
 
 export const pageQuery = graphql`
-  query($tag: String) {
+  query($tag: String, $skip: Int!, $limit: Int!) {
     allContentfulBlogPost(
-      limit: 2000
+      limit: $limit
+      skip: $skip
       sort: { fields: [publishDate], order: DESC }
       filter: { tags: { in: [$tag] } }
     ) {
