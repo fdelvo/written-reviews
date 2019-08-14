@@ -1,7 +1,4 @@
 import React from 'react'
-import { graphql } from 'gatsby'
-import get from 'lodash/get'
-import Helmet from 'react-helmet'
 import Layout from '../components/layout'
 
 class AboutIndex extends React.Component {
@@ -10,7 +7,7 @@ class AboutIndex extends React.Component {
     return (
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>
-          <div className="wrapper">
+          <div className="wrapper postWrapper">
             <h2 className="section-headline">About Written Reviews</h2>
             <p>
               Written Reviews is a blog by Florian Delvo. On this blog I'll be
