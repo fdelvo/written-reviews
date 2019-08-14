@@ -22,7 +22,7 @@ class BlogPostTemplate extends React.Component {
               fluid={post.heroImage.fluid}
             />
           </div>
-          <div className="wrapper">
+          <div className="wrapper postWrapper">
             <h1 className="section-headline">{post.title}</h1>
             <p
               style={{
