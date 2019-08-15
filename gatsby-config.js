@@ -23,7 +23,6 @@ module.exports = {
     description:
       "Personal review blog.",
     url: "https://www.written-reviews.com", // No trailing slash allowed!
-    image: "/ng_twitter_meta.png", // Path to your image you placed in the 'static' folder
     twitterUsername: "@writtenreviews",
   },
   pathPrefix: '/written-reviews',
