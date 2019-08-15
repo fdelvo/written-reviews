@@ -36,7 +36,7 @@ exports.createPages = ({ graphql, actions }) => {
         }
 
         const posts = result.data.allContentfulBlogPost.edges
-        const postsPerPage = 2
+        const postsPerPage = 12
         const numPagesPosts = Math.ceil(posts.length / postsPerPage)
 
         Array.from({ length: numPagesPosts }).forEach((_, i) => {
