@@ -15,7 +15,7 @@ class TagTemplate extends React.Component {
     const { edges, totalCount } = get(this.props, 'data.allContentfulBlogPost')
     const tagHeader = `${totalCount} post${
       totalCount === 1 ? '' : 's'
-    } tagged with "${tag}"`
+    } tagged with "${tag}":`
     const featurePost = get(this, 'props.data.allContentfulBlogPost.edges[0]')
     const isFirst = currentPage === 1
     const isLast = currentPage === numPagesPostsTags
@@ -29,7 +29,7 @@ class TagTemplate extends React.Component {
       <Layout>
         <div style={{ background: '#fff' }}>
           <div className="wrapper">
-            <h2 className="section-headline">{tagHeader}</h2>
+            <p>{tagHeader}</p>
             {edges.length == 1 && <FeaturePost data={featurePost.node} />}
             {edges.length > 1 && (
               <ul className="article-list">

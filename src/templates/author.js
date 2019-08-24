@@ -12,7 +12,7 @@ class AuthorTemplate extends React.Component {
     const { edges, totalCount } = get(this.props, 'data.allContentfulBlogPost')
     const authorHeader = `${totalCount} post${
       totalCount === 1 ? '' : 's'
-    } by ${authorName}`
+    } by ${authorName}:`
     const featurePost = get(this, 'props.data.allContentfulBlogPost.edges[0]')
     const isFirst = currentPage === 1
     const isLast = currentPage === numPagesPostsAuthors
@@ -23,7 +23,7 @@ class AuthorTemplate extends React.Component {
       <Layout>
         <div style={{ background: '#fff' }}>
           <div className="wrapper">
-            <h2 className="section-headline">{authorHeader}</h2>
+            <p>{authorHeader}</p>
             {edges.length == 1 && <FeaturePost data={featurePost.node} />}
             {edges.length > 1 && (
               <ul className="article-list">

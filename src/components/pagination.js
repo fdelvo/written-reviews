@@ -3,7 +3,7 @@ import { Link } from 'gatsby'
 import styles from './pagination.module.css'
 
 export default ({ isFirst, isLast, prevPage, nextPage, numPages, to }) => (
-  <div>
+  <div style={{marginTop: "1em"}}>
     {!isFirst && (
       <Link to={prevPage} rel="prev" className={styles.paginationLink}>
         ← Previous Page

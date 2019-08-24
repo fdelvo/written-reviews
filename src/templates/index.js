@@ -19,9 +19,7 @@ class RootIndex extends React.Component {
     return (
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>
-          <FeaturePost data={featurePost.node} />
           <div className="wrapper">
-            <h2 className="section-headline">Posts</h2>
             <ul className="article-list">
               {posts.map(({ node }) => {
                 return (
@@ -65,7 +63,7 @@ export const pageQuery = graphql`
           publishDate(formatString: "MMMM Do, YYYY")
           tags
           thumbnail: heroImage {
-            fluid(maxWidth: 350, maxHeight: 196, resizingBehavior: SCALE) {
+            fluid(maxWidth: 480, maxHeight: 260, resizingBehavior: SCALE) {
               ...GatsbyContentfulFluid_tracedSVG
             }
           }
