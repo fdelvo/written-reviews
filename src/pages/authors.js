@@ -13,7 +13,6 @@ class AuthorsIndex extends React.Component {
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>
           <div className="wrapper">
-            <h2 className="section-headline">Authors</h2>
             {authors.map(({ node }) => {
               return <Hero data={node} />
             })}
@@ -43,7 +42,7 @@ export const pageQuery = graphql`
             shortBio
           }
           image {
-            fluid(maxWidth: 1180, resizingBehavior: SCALE) {
+            fluid(maxWidth: 1920, resizingBehavior: SCALE) {
               ...GatsbyContentfulFluid_tracedSVG
             }
           }

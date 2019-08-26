@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Libre+Caslon+Text&display=swap');
+@import url('https://use.typekit.net/mid2eae.css');
 
 body {
-  font-family: 'Libre Caslon Text', serif;
-  font-size: 1.1em;
-  line-height: 1.65;
+  font-family: 'Helvetica Neue';
+  font-size: 100%;
   color: #373f49;
-  background: #eee;
+  background: #fff;
   margin: 0;
 }
 
@@ -26,14 +26,14 @@ a {
 }
 
 .wrapper {
-  width: calc(100% - 10vmin);
-  margin: 0 auto;
-  padding: 5vmin 0;
+  padding: 1em;
 }
 
 .postWrapper {
-  max-width: 60%;
-  margin: 0 auto; 
+  max-width: 50%;
+  margin: 0 auto;
+  line-height: 1.65;
+  font-size: 120%;
 }
 
 /**
@@ -68,4 +68,22 @@ a {
 
 .list-inline li {
   display: inline-block;
+}
+
+@media (max-width: 600px) {
+  .article-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: grid;
+    grid-template-columns: 100%;
+    grid-gap: 5vmin;
+  }
+
+  .postWrapper {
+    max-width: 100%;
+    margin: 0 auto;
+    line-height: 1.65;
+    font-size: 120%;
+  }
 }

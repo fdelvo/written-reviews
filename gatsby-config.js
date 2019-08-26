@@ -18,8 +18,8 @@ if (!spaceId || !accessToken) {
 
 module.exports = {
   siteMetadata: {
-    title: "Written Reviews",
-    titleTemplate: "Written Reviews",
+    title: "written reviews",
+    titleTemplate: "written reviews",
     description:
       "Personal review blog.",
     url: "https://www.written-reviews.com", // No trailing slash allowed!

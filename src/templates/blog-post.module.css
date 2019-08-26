@@ -8,3 +8,19 @@
   margin: -1em -2.5em 1em;
   font-size: 2em
 }
+
+.cover {
+  position: relative;
+  background: #000;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 3em;
+}
+
+.coverImage {
+  /*
+    Ensure golden ratio for the hero size while limiting it to some extend to
+    the viewport width
+  */
+  max-height: 86vh;
+}
