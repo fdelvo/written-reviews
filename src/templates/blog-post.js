@@ -70,9 +70,9 @@ class BlogPostTemplate extends React.Component {
               }}
             />
             {post.tags.map(tag => (
-              <p className={styles.tag} key={tag}>
-                <Link to={`/tags/${tag}`}>{tag}</Link>
-              </p>
+              <Link className={styles.tag} key={tag} to={`/tags/${tag}`}>
+                {tag}
+              </Link>
             ))}
           </div>
         </div>
@@ -94,7 +94,7 @@ export const pageQuery = graphql`
         description
       }
       heroImage {
-        fluid(maxWidth: 1180, background: "rgb:000000") {
+        fluid(maxWidth: 1920, background: "rgb:000000") {
           ...GatsbyContentfulFluid_tracedSVG
         }
       }

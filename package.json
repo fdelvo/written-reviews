@@ -40,7 +40,7 @@
     "url": "git+https://github.com/contentful-userland/gatsby-contentful-starter.git"
   },
   "engines": {
-    "node": "10.16.0"
+    "node": "10.8.0"
   },
   "scripts": {
     "dev": "npm run develop",
