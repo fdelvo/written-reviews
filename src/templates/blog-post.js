@@ -5,7 +5,7 @@ import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styles from '../components/article-preview.module.css'
 
-import heroStyles from '../components/hero.module.css'
+import heroStyles from './blog-post.module.css'
 
 class BlogPostTemplate extends React.Component {
   render() {
@@ -15,9 +15,9 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>
-          <div className={heroStyles.hero}>
+          <div className={heroStyles.cover}>
             <Img
-              className={heroStyles.heroImage}
+              className={heroStyles.coverImage}
               alt={post.title}
               fluid={post.heroImage.fluid}
             />

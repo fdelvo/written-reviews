@@ -6,10 +6,12 @@ export default () => (
   <nav role="navigation">
     <ul className={styles.navigation}>
       <li className={styles.navigationItem}>
-        <Link to="/">Blog</Link>
+        <Link to="/">
+          <h1 className={styles.headline}>written reviews</h1>
+        </Link>
       </li>
       <li className={styles.navigationItem}>
-        <Link to="/tags/">Tags | Categories</Link>
+        <Link to="/tags/">Tags</Link>
       </li>
       <li className={styles.navigationItem}>
         <Link to="/authors/">Authors</Link>
