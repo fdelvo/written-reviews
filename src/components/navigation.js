@@ -7,17 +7,14 @@ export default () => (
     <ul className={styles.navigation}>
       <li className={styles.navigationItem}>
         <Link to="/">
-          <h1 className={styles.headline}>written reviews</h1>
+          <h1 className={styles.headline}>fde-photo-log</h1>
         </Link>
       </li>
       <li className={styles.navigationItem}>
         <Link to="/tags/">Tags</Link>
       </li>
       <li className={styles.navigationItem}>
-        <Link to="/authors/">Authors</Link>
-      </li>
-      <li className={styles.navigationItem}>
-        <Link to="/about/">About</Link>
+        <Link to="/contact/">Contact</Link>
       </li>
     </ul>
   </nav>

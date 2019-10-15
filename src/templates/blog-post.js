@@ -15,13 +15,10 @@ class BlogPostTemplate extends React.Component {
     return (
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>
-          <div className={heroStyles.cover}>
-            <Img
-              className={heroStyles.coverImage}
-              alt={post.title}
-              fluid={post.heroImage.fluid}
-            />
-          </div>
+          <img
+            className={heroStyles.coverImage}
+            src={post.heroImage.file.url}
+          />
           <div className="wrapper postWrapper">
             <h1 className="section-headline">{post.title}</h1>
             <p
@@ -64,11 +61,13 @@ class BlogPostTemplate extends React.Component {
                 WhatsApp
               </a>
             </p>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: post.body.childMarkdownRemark.html,
-              }}
-            />
+            {post.body !== null && (
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: post.body.childMarkdownRemark.html,
+                }}
+              />
+            )}
             {post.tags.map(tag => (
               <Link className={styles.tag} key={tag} to={`/tags/${tag}`}>
                 {tag}
@@ -94,8 +93,8 @@ export const pageQuery = graphql`
         description
       }
       heroImage {
-        fluid(maxWidth: 1920, background: "rgb:000000") {
-          ...GatsbyContentfulFluid_tracedSVG
+        file {
+          url
         }
       }
       author {

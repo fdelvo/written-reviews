@@ -11,7 +11,7 @@ class TagsIndex extends React.Component {
       <Layout location={this.props.location}>
         <div style={{ background: '#fff' }}>
           <div className="wrapper">
-            <ul>
+            <ul class="tag-list">
               {tags.map(tag => (
                 <li key={tag.fieldValue}>
                   <Link to={`/tags/${tag.fieldValue}/`}>

@@ -16,7 +16,7 @@ export default ({ data }) => (
         <Link to={`/authors/${data.slug}`}>{data.name}</Link>
       </h3>
       <p className={styles.heroTitle}>{data.title}</p>
-      <ul>
+      <ul className={styles.socialMediaList}>
         <li>
           Twitter:{' '}
           <a href={`https://www.twitter.com/${data.twitter}`}>{data.twitter}</a>

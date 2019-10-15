@@ -22,5 +22,9 @@
     Ensure golden ratio for the hero size while limiting it to some extend to
     the viewport width
   */
-  max-height: 86vh;
+  width: 80vw;
+  height: 86vh;
+  object-fit: scale-down;
+  display: block;
+  margin: auto;
 }

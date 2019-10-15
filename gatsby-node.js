@@ -8,7 +8,6 @@ exports.createPages = ({ graphql, actions }) => {
   return new Promise((resolve, reject) => {
     const blogPost = path.resolve('./src/templates/blog-post.js')
     const tagComponent = path.resolve('./src/templates/tag.js')
-    const authorComponent = path.resolve('./src/templates/author.js')
     const indexComponent = path.resolve('./src/templates/index.js')
     resolve(
       graphql(
@@ -87,37 +86,6 @@ exports.createPages = ({ graphql, actions }) => {
                 numPagesPostsTags,
                 currentPage: i + 1,
                 tag,
-              },
-            })
-          })
-        })
-
-        let authors = []
-        _.each(posts, edge => {
-          if (_.get(edge, 'node.author.slug')) {
-            authors.push({'slug': edge.node.author.slug, 'name': edge.node.author.name})
-          }
-        })
-        authors = _.uniq(authors)
-        authors.forEach(author => {
-          const authorPosts = posts.filter(
-            post => post.node.author.slug === author.slug
-          )
-          const numPagesPostsAuthors = Math.ceil(
-            authorPosts.length / postsPerPage
-          )
-          Array.from({ length: numPagesPostsAuthors }).forEach((_, i) => {
-            createPage({
-              path:
-                i === 0 ? `/authors/${author.slug}/` : `/authors/${author.slug}/${i + 1}`,
-              component: authorComponent,
-              context: {
-                limit: postsPerPage,
-                skip: i * postsPerPage,
-                numPagesPostsAuthors,
-                currentPage: i + 1,
-                authorName: author.name,
-                authorSlug: author.slug,
               },
             })
           })
