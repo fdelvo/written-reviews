@@ -87,10 +87,6 @@ export const pageQuery = graphql`
               url
             }
           }
-          coverImage: heroImage {
-            fluid(maxWidth: 1920, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
-            }
           }
         }
       }
