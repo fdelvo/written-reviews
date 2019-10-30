@@ -1,13 +1,14 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styles from './navigation.module.css'
+import logo from "../static/1.png"
 
 export default () => (
   <nav role="navigation">
     <ul className={styles.navigation}>
       <li className={styles.navigationItem}>
         <Link to="/">
-          <h1 className={styles.headline}>fde-photo-log</h1>
+          <img width={200} src={logo} />
         </Link>
       </li>
       <li className={styles.navigationItem}>

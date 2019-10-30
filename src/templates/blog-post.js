@@ -61,6 +61,14 @@ class BlogPostTemplate extends React.Component {
                 WhatsApp
               </a>
             </p>
+            <ul>
+              {post.camera && (
+                <li><b>Camera:</b> {post.camera}</li>
+              )}
+              {post.filmStock && (
+                <li><b>Film Stock:</b> {post.filmStock}</li>
+              )}
+            </ul>
             {post.body !== null && (
               <div
                 dangerouslySetInnerHTML={{
@@ -89,6 +97,8 @@ export const pageQuery = graphql`
       slug
       tags
       publishDate(formatString: "MMMM Do, YYYY")
+      camera
+      filmStock
       description {
         description
       }
