@@ -63,8 +63,8 @@ export const pageQuery = graphql`
           publishDate(formatString: "MMMM Do, YYYY")
           tags
           thumbnail: heroImage {
-            fluid(maxWidth: 1200, maxHeight: 700, resizingBehavior: SCALE) {
-              ...GatsbyContentfulFluid_tracedSVG
+            file {
+              url
             }
           }
           coverImage: heroImage {

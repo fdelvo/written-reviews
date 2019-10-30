@@ -16,3 +16,14 @@
 .article-description {
   line-height: 1.65;
 }
+
+.thumbnail {
+  width: 100%;
+  height: 100%;
+  object-position: center;
+  object-fit: contain;
+}
+
+.thumbnailContainer {
+  height: 400px;
+}

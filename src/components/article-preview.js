@@ -6,9 +6,9 @@ import styles from './article-preview.module.css'
 
 export default ({ article }) => (
   <div className={styles.preview}>
-    <Link to={`/blog/${article.slug}`}>
-      <Img alt="" fluid={article.thumbnail.fluid} />
-    </Link>
+    <div className={styles.thumbnailContainer}>
+      <img src={article.thumbnail.file.url} className={styles.thumbnail} />
+    </div>
     <strong className={styles.previewTitle}>
       <Link to={`/blog/${article.slug}`}>{article.title}</Link>
     </strong>
