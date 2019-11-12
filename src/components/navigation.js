@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'gatsby'
 import styles from './navigation.module.css'
-import logo from "../static/1.png"
+import logo from "../static/Tilted Flo At Logo.png"
 
 export default () => (
   <nav role="navigation">
