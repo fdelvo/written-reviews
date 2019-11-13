@@ -21,10 +21,10 @@ module.exports = {
     title: "fde-photo-log",
     titleTemplate: "fde-photo-log",
     description:
-      "Personal review blog.",
-    url: "https://www.written-reviews.com", // No trailing slash allowed!
-    image: "/ng_twitter_meta.png", // Path to your image you placed in the 'static' folder
-    twitterUsername: "@writtenreviews",
+      "Photo Blog by Florian Delvo.",
+    url: "https://www.fde-photo-log.com", // No trailing slash allowed!
+    image: "", // Path to your image you placed in the 'static' folder
+    twitterUsername: "@tiltedflo",
   },
   pathPrefix: '/written-reviews',
   plugins: [
