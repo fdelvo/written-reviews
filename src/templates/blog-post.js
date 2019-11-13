@@ -31,42 +31,24 @@ class BlogPostTemplate extends React.Component {
               By {post.author.name} on {post.publishDate}
               <span> | </span>
               <span>Share: </span>
-              <a
-                class="resp-sharing-button__link"
-                href={`https://twitter.com/intent/tweet/?text=${post.description.description}%20${location.href}`}
-                target="_blank"
-                rel="noopener"
-                aria-label="Twitter"
-              >
-                Twitter
-              </a>
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=https://fde-photo-log.herokuapp.com${window.location.pathname}`}>Facebook</a>
               <span> | </span>
-              <a
-                class="resp-sharing-button__link"
-                href={`https://reddit.com/submit/?url=https%3A%2F%2Fwww%2Enerdy%2Dgamers%2Ecom%2Fblog%2Fpost${post.slug}&amp;resubmit=true&amp;title=test`}
-                target="_blank"
-                rel="noopener"
-                aria-label="Reddit"
-              >
-                Reddit
-              </a>
+              <a href={`https://twitter.com/home?status=https://fde-photo-log.herokuapp.com${window.location.pathname}`}>Twitter</a>
               <span> | </span>
-              <a
-                class="resp-sharing-button__link"
-                href="whatsapp://send?text=Visit%20Nerdy%20Gamers%20MTG%20https%3A%2F%2Fwww.nerdy-gamers.com"
-                target="_blank"
-                rel="noopener"
-                aria-label="WhatsApp"
-              >
-                WhatsApp
-              </a>
+              <a href={`mailto:info@example.com?&subject=&body=https://fde-photo-log.herokuapp.com${window.location.pathname}`}>Mail</a>
+              <span> | </span>
+              <a href={`whatsapp://send?text=https://fde-photo-log.herokuapp.com${window.location.pathname}`}>WhatsApp</a>
             </p>
             <ul>
               {post.camera && (
-                <li><b>Camera:</b> {post.camera}</li>
+                <li>
+                  <b>Camera:</b> {post.camera}
+                </li>
               )}
               {post.filmStock && (
-                <li><b>Film Stock:</b> {post.filmStock}</li>
+                <li>
+                  <b>Film Stock:</b> {post.filmStock}
+                </li>
               )}
             </ul>
             {post.body !== null && (
