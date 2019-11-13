@@ -10,6 +10,10 @@
   padding-right: 1em;
 }
 
+.navLogo {
+  width: 200px;
+}
+
 .navigationItem {
   display: inline-flex;
   align-items: center;
@@ -33,5 +37,12 @@
 @media (max-width: 600px) {
   .headline {
     font-size: 120%;
+  }
+  .navLogo {
+    width: 120px;
+  }
+
+  .navigation {
+    height: 15vh;
   }
 }

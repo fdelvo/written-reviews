@@ -28,3 +28,17 @@
   display: block;
   margin: auto;
 }
+
+@media (max-width: 600px) {
+  .coverImage {
+    /*
+      Ensure golden ratio for the hero size while limiting it to some extend to
+      the viewport width
+    */
+    width: 95vw;
+    height: 85vh;
+    object-fit: scale-down;
+    display: block;
+    margin: auto;
+  }
+}
