@@ -1,7 +1,6 @@
 import React from 'react'
 import { graphql, Link } from 'gatsby'
 import get from 'lodash/get'
-import Img from 'gatsby-image'
 import Layout from '../components/layout'
 import styles from '../components/article-preview.module.css'
 
@@ -31,13 +30,13 @@ class BlogPostTemplate extends React.Component {
               By {post.author.name} on {post.publishDate}
               <span> | </span>
               <span>Share: </span>
-              <a href={`https://www.facebook.com/sharer/sharer.php?u=https://fde-photo-log.herokuapp.com${window.location.pathname}`}>Facebook</a>
+              <a href={`https://www.facebook.com/sharer/sharer.php?u=https://fde-photo-log.herokuapp.com${location.pathname}`}>Facebook</a>
               <span> | </span>
-              <a href={`https://twitter.com/home?status=https://fde-photo-log.herokuapp.com${window.location.pathname}`}>Twitter</a>
+              <a href={`https://twitter.com/home?status=https://fde-photo-log.herokuapp.com${location.pathname}`}>Twitter</a>
               <span> | </span>
-              <a href={`mailto:info@example.com?&subject=&body=https://fde-photo-log.herokuapp.com${window.location.pathname}`}>Mail</a>
+              <a href={`mailto:info@example.com?&subject=&body=https://fde-photo-log.herokuapp.com${location.pathname}`}>Mail</a>
               <span> | </span>
-              <a href={`whatsapp://send?text=https://fde-photo-log.herokuapp.com${window.location.pathname}`}>WhatsApp</a>
+              <a href={`whatsapp://send?text=https://fde-photo-log.herokuapp.com${location.pathname}`}>WhatsApp</a>
             </p>
             <ul>
               {post.camera && (
